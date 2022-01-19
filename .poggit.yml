@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Aetheam/Skyblock_Aethteam
+build-by-default: true
+branches:
+- Master
+projects:
+  Skyblock_Aethteam:
+    path: ""
+...
