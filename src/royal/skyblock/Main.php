@@ -34,12 +34,10 @@ class Main extends PluginBase implements Listener
                     PacketHooker::register($this);
                 }
             } catch (HookAlreadyRegistered $error) {
-                $this->getServer()->getLogger()->alert($error->getMessage());
             }
             $this->getServer()->getCommandMap()->register("", new RegisterCommands($this, "is", self::getLangageAPI()->getIntoFileLangageConfig("is_commands_descrition")));
         } else {
             $this->registerConfigs($this->getResources());
-            $this->getServer()->getLogger()->alert('Missing lang file if is the first lauch estart server');
             Main::getInstance()->getServer()->getPluginManager()->disablePlugin(Main::getInstance()->getServer()->getPluginManager()->getPlugin('Skyblock_Aethteam'));
         }
     }
