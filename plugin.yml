@@ -1,7 +1,6 @@
 name: Skyblock_Aethteam
 author: royal_Aethteam
 main: royal\skyblock\Main
-mcpe-protocols: [475]
 api:
   - 4.0.0
 version: 0.0.1

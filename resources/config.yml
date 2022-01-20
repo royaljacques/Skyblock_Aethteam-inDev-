@@ -1,0 +1,5 @@
+#do not touch version please
+version: 0.0.1
+#for developper don't touch
+dev: true
+langage: "fr_FR"
