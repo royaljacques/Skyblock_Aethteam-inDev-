@@ -5,9 +5,7 @@ namespace royal\skyblock;
 use CortexPE\Commando\exception\HookAlreadyRegistered;
 use CortexPE\Commando\PacketHooker;
 use pocketmine\plugin\PluginBase;
-
 use pocketmine\event\Listener;
-use pocketmine\utils\Config;
 use royal\skyblock\api\LangageAPI;
 use royal\skyblock\commands\RegisterCommands;
 
@@ -23,17 +21,17 @@ class Main extends PluginBase implements Listener
         self::$instance = $this;
     }
 
+    /**
+     * @throws HookAlreadyRegistered
+     */
     protected function onEnable (): void
     {
         if (file_exists($this->getDataFolder() . 'langages/' . Main::getLangageAPI()->getLangage() . ".yml")) {
             $this->registerConfigs($this->getResources());
             self::getLangageAPI()->loadLangConfig();
 
-            try {
-                if (!PacketHooker::isRegistered()) {
-                    PacketHooker::register($this);
-                }
-            } catch (HookAlreadyRegistered $error) {
+            if (!PacketHooker::isRegistered()) {
+                PacketHooker::register($this);
             }
             $this->getServer()->getCommandMap()->register("", new RegisterCommands($this, "is", self::getLangageAPI()->getIntoFileLangageConfig("is_commands_descrition")));
         } else {
