@@ -16,6 +16,6 @@ class HelpCommands extends BaseSubCommand {
 
      public function onRun (CommandSender $sender, string $aliasUsed, array $args): void
      {
-         $sender->sendMessage("Rule Arrive");
+         $sender->sendMessage(Main::getLangageAPI()->getIntoFileLangageConfig("help_reply_message"));
      }
  }

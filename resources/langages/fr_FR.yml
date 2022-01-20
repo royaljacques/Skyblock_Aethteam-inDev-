@@ -2,3 +2,6 @@
 
 is_commands_descrition: "Commande skyblock"
 help_commands_descrition: "Voir la page d'aide"
+setadminhome_commands_description: "mettre un home que seul les gradé peuvent avoir"
+
+help_reply_message: "§e   _______§/is Help§e_______\n  §r/is create: crée une île\n  /is del: surprimer votre île\n  /is members: voir les membres de votre île"

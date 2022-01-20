@@ -7,6 +7,7 @@ use CortexPE\Commando\BaseSubCommand;
 use CortexPE\Commando\exception\ArgumentOrderException;
 use pocketmine\command\CommandSender;
 use royal\skyblock\commands\subCommands\HelpCommands;
+use royal\skyblock\commands\subCommands\SetAdminHome;
 use royal\skyblock\Main;
 
 class RegisterCommands extends BaseCommand{
@@ -14,7 +15,9 @@ class RegisterCommands extends BaseCommand{
     protected function prepare (): void
     {
 
+
         $this->registerSubCommand(new HelpCommands());
+        $this->registerSubCommand(new SetAdminHome());
     }
 
     public function onRun (CommandSender $sender, string $aliasUsed, array $args): void

@@ -6,6 +6,7 @@ use CortexPE\Commando\exception\HookAlreadyRegistered;
 use CortexPE\Commando\PacketHooker;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
+use royal\skyblock\api\IslandParameterAPI;
 use royal\skyblock\api\LangageAPI;
 use royal\skyblock\commands\RegisterCommands;
 
@@ -15,10 +16,16 @@ class Main extends PluginBase implements Listener
 
     public static LangageAPI $langageAPI;
 
+
+    public static IslandParameterAPI $islandParameterAPI;
+
+
     protected function onLoad (): void
     {
-        self::$langageAPI = new LangageAPI($this);
+
         self::$instance = $this;
+        self::$langageAPI = new LangageAPI($this);
+        self::$islandParameterAPI = new IslandParameterAPI($this);
     }
 
     /**
@@ -38,6 +45,7 @@ class Main extends PluginBase implements Listener
             $this->registerConfigs($this->getResources());
             Main::getInstance()->getServer()->getPluginManager()->disablePlugin(Main::getInstance()->getServer()->getPluginManager()->getPlugin('Skyblock_Aethteam'));
         }
+        self::getIslandParameterAPI()->createParameter("royal");
     }
 
     public function registerConfigs ($path)
@@ -56,4 +64,10 @@ class Main extends PluginBase implements Listener
     {
         return self::$langageAPI;
     }
+
+    public static function getIslandParameterAPI (): IslandParameterAPI
+    {
+        return self::$islandParameterAPI;
+    }
+
 }
