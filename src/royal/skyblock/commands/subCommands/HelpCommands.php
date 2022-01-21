@@ -1,9 +1,13 @@
 <?php
+
 namespace royal\skyblock\commands\subCommands;
+
 use CortexPE\Commando\BaseSubCommand;
 use royal\skyblock\Main;
 use pocketmine\command\CommandSender;
-class HelpCommands extends BaseSubCommand {
+
+class HelpCommands extends BaseSubCommand
+{
 
     public function __construct ()
     {
@@ -11,11 +15,11 @@ class HelpCommands extends BaseSubCommand {
     }
 
     protected function prepare (): void
-     {
-     }
+    {
+    }
 
-     public function onRun (CommandSender $sender, string $aliasUsed, array $args): void
-     {
-         $sender->sendMessage(Main::getLangageAPI()->getIntoFileLangageConfig("help_reply_message"));
-     }
- }
+    public function onRun (CommandSender $sender, string $aliasUsed, array $args): void
+    {
+        $sender->sendMessage(Main::getLangageAPI()->getIntoFileLangageConfig("help_reply_message"));
+    }
+}

@@ -28,9 +28,6 @@ class Main extends PluginBase implements Listener
         self::$islandParameterAPI = new IslandParameterAPI($this);
     }
 
-    /**
-     * @throws HookAlreadyRegistered
-     */
     protected function onEnable (): void
     {
         if (file_exists($this->getDataFolder() . 'langages/' . Main::getLangageAPI()->getLangage() . ".yml")) {
@@ -45,7 +42,6 @@ class Main extends PluginBase implements Listener
             $this->registerConfigs($this->getResources());
             Main::getInstance()->getServer()->getPluginManager()->disablePlugin(Main::getInstance()->getServer()->getPluginManager()->getPlugin('Skyblock_Aethteam'));
         }
-        self::getIslandParameterAPI()->createParameter("royal");
     }
 
     public function registerConfigs ($path)
