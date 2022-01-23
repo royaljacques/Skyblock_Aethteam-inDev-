@@ -1,6 +1,7 @@
 <?php
 namespace royal\skyblock\api;
 
+use JsonException;
 use pocketmine\nbt\LittleEndianNbtSerializer;
 use pocketmine\nbt\TreeRoot;
 use pocketmine\Server;
@@ -8,6 +9,7 @@ use pocketmine\utils\Binary;
 use pocketmine\utils\Config;
 use pocketmine\world\format\io\data\BedrockWorldData;
 use royal\skyblock\Main;
+use SplFileInfo;
 use Webmozart\PathUtil\Path;
 
 class IslandManager{
@@ -32,7 +34,7 @@ class IslandManager{
         @mkdir($server->getDataPath() . "/worlds/$name/");
         @mkdir($server->getDataPath() . "/worlds/$name/db/");
 
-        copy(Main::getInstance()->getDataFolder() . "/mapList/" . $from. "/level.dat", $server->getDataPath() . "/worlds/$name/level.dat");
+        copy(Main::getInstance()->getDataFolder() . "mapList/" . $from. "/level.dat", $server->getDataPath() . "/worlds/$name/level.dat");
         $oldWorldPath = Main::getInstance()->getDataFolder() . "/mapList/$from/level.dat";
         $newWorldPath = $server->getDataPath() . "/worlds/$name/level.dat";
 
@@ -49,10 +51,9 @@ class IslandManager{
 
         return $name;
     }
-
     public static function copyDir($from, $to){
         $to = rtrim($to, "\\/") . "/";
-        /** @var \SplFileInfo $file */
+        /** @var SplFileInfo $file */
         foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($from)) as $file){
             if($file->isFile()){
                 $target = $to . ltrim(substr($file->getRealPath(), strlen($from)), "\\/");
@@ -64,10 +65,23 @@ class IslandManager{
             }
         }
     }
+
+    /**
+     * @throws JsonException
+     */
     public function CreateIsland(string $id, string $name){
         $config = new Config($this->getPlugin()->getDataFolder()."mapList/mapList.yml");
-        $selector = $config->get(1);
+        $selector = $config->get($id);
         $compositCustomNameIs = "is_".$name."_".$this->GenerateRandomNumber();
+        $Lead = new Config($this->plugin->getDataFolder()."IslandLeader.json");
+        $Lead->set($name, $compositCustomNameIs);
+        $IsleParam = new Config($this->getPlugin()->getDataFolder()."isConfig/".$compositCustomNameIs.'.yml', Config::YAML, array(
+            "IsLevel" => 0,
+            "IsXp" => 0,
+        ));
+        $Lead->save();
+        $IsleParam->save();
+
         self::copyWorld($selector['name'], $compositCustomNameIs);
 
     }
@@ -80,9 +94,6 @@ class IslandManager{
             $index = rand(0, strlen($characters) - 1);
             $randomString .= $characters[$index];
         }
-
         return $randomString;
     }
-
-
 }
