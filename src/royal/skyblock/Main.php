@@ -2,76 +2,32 @@
 
 namespace royal\skyblock;
 
-use CortexPE\Commando\exception\HookAlreadyRegistered;
-use CortexPE\Commando\PacketHooker;
-use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
+use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use royal\skyblock\api\IslandParameterAPI;
 use royal\skyblock\api\LangageAPI;
-use royal\skyblock\commands\RegisterCommands;
+use royal\skyblock\api\LoaderAPI;
+use royal\skyblock\events\PlayerJoin;
 
 class Main extends PluginBase implements Listener
 {
-    public static self $instance;
-
-    public static LangageAPI $langageAPI;
-
-
-    public static IslandParameterAPI $islandParameterAPI;
-
+    private LoaderAPI $loaderAPI;
+    public LangageAPI $langageAPI;
 
     protected function onLoad (): void
     {
-        self::$instance = $this;
-        self::$langageAPI = new LangageAPI($this);
-        self::$islandParameterAPI = new IslandParameterAPI($this);
+        $this->loaderAPI = new LoaderAPI($this);
     }
 
-    /**
-     * @throws HookAlreadyRegistered
-     */
     protected function onEnable (): void
     {
-
-        if (file_exists($this->getDataFolder() . 'langages/' . Main::getLangageAPI()->getLangage() . ".yml")) {
-            $this->registerConfigs($this->getResources());
-            self::getLangageAPI()->loadLangConfig();
-
-            if (!PacketHooker::isRegistered()) {
-                PacketHooker::register($this);
-            }
-            $this->getServer()->getCommandMap()->register("", new RegisterCommands($this, "is", self::getLangageAPI()->getIntoFileLangageConfig("is_commands_descrition")));
-        } else {
-            $this->registerConfigs($this->getResources());
-            Main::getInstance()->getServer()->getPluginManager()->disablePlugin(Main::getInstance()->getServer()->getPluginManager()->getPlugin('Skyblock_Aethteam'));
-        }
-
+        $this->loaderAPI->init();
+        $config = new Config($this->getDataFolder() . "config.yml");
+        $this->langageAPI = new LangageAPI($this);
+        $this->langageAPI->init();
+        $this->getServer()->getPluginManager()->registerEvents($this, $this);
+        $this->getServer()->getPluginManager()->registerEvents(new PlayerJoin($this), $this);
     }
 
-    public function registerConfigs ($path)
-    {
-        @mkdir($this->getDataFolder()."players/");
-        @mkdir($this->getDataFolder()."isConfig/");
-        foreach ($path as $pats => $p) {
-            $this->saveResource($pats);
-        }
-    }
-
-    public static function getInstance (): Main
-    {
-        return self::$instance;
-    }
-
-
-    public static function getLangageAPI (): LangageAPI
-    {
-        return self::$langageAPI;
-    }
-
-    public static function getIslandParameterAPI (): IslandParameterAPI
-    {
-        return self::$islandParameterAPI;
-    }
 
 }

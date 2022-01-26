@@ -1,7 +1,0 @@
-#add your custom skyblock map
-1:
-  name: "map1"
-  folderpath: "map1template"
-2:
-  name: "map1"
-  folderpath: "map2template"

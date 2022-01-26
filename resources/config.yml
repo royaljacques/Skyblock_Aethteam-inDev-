@@ -1,11 +1,2 @@
-#do not touch version please
-version: 0.0.1
-#for developper don't touch
-dev: true
-langage: "fr_FR"
-
-##Config for parameter island
-#Block Xp
-block:
-  "1:0": 15
-  "2:0": 20
+#write or choice your name file of your langs
+serverlang: fr_FR
