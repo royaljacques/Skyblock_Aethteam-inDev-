@@ -25,6 +25,7 @@ class LoaderAPI
     {
         @mkdir($this->plugin->getDataFolder() . "langs/");
         $this->plugin->saveResource("langs/fr_FR.yml");
+        $this->plugin->saveResource("langs/pl_PL.yml");
         @mkdir($this->plugin->getDataFolder()."players/");
         @mkdir($this->plugin->getDataFolder()."islandList/");
         @mkdir($this->plugin->getDataFolder()."isConfig/");

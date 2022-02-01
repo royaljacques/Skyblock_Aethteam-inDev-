@@ -63,6 +63,7 @@ class LangageAPI
             $config = new Config($this->plugin->getDataFolder() . "players/" . $player->getName() . ".yml");
 
             $config->set("lang", $selected->getText());
+            $config->save();
         });
         foreach ($this->translate as $key => $value) {
             $form->addButton($key, $key);

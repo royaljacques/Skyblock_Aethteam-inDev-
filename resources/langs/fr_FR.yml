@@ -2,12 +2,13 @@
 
 is_commands_descrition: "Commande skyblock"
 help_commands_descrition: "Voir la page d'aide"
-setadminhome_commands_description: "mettre un home que seul les gradé peuvent avoir"
+set_leader_home_commands_description: "mettre un home ou seul les leader peuvent se tp"
 create_commands_description: "crée son ile"
 
 
 #commands respounce
-create_successfull_complete: "ton is c'est bien complétée , fais /is go pour y accédée "
+create_successfully_complete: "ton is c'est bien complétée , fais /is go pour y accédée "
 create_error_player_has_island: "Tu as déja une île!!!"
+create_error_island_not_exist: "L'île que tu as choisi n'est pas répertoriée "
 
 help_reply_message: "§e   _______§/is Help§e_______\n  §r/is create: crée une île\n  /is del: surprimer votre île\n  /is members: voir les membres de votre île"

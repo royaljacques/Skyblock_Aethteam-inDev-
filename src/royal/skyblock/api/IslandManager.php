@@ -27,14 +27,14 @@ class IslandManager{
         return $this->plugin;
     }
 
-    public function createNewIsland(Player $player, int $isName){
+    public function createNewIsland(Player $player, string $isName){
         if ($this->getPlugin()->configAPI->getHasIsland($player) === false){
             $Folder = $this->getPlugin()->islandList[$isName];
             $compositCustomNameIs = "is_".$player->getName()."_".$this->GenerateRandomNumber();
             $this->getPlugin()->configAPI->setownerIsland($player, $compositCustomNameIs);
             $this->getPlugin()->configAPI->setIslandConfig($compositCustomNameIs);
             self::copyWorld($Folder, $compositCustomNameIs);
-            $player->sendMessage($this->getPlugin()->getLangageAPI()->getTranslate($player, "create_successfull_complete"));
+            $player->sendMessage($this->getPlugin()->getLangageAPI()->getTranslate($player, "create_successfully_complete"));
         }else{
             $player->sendMessage($this->getPlugin()->getLangageAPI()->getTranslate($player, "create_error_player_has_island"));
         }
@@ -51,13 +51,14 @@ class IslandManager{
         return $randomString;
     }
 
-    private static function copyWorld(string $from, string $name ): string{
+    private static function copyWorld(string $from, string $name ): void
+    {
         $server = Server::getInstance();
         @mkdir($server->getDataPath() . "/worlds/$name/");
         @mkdir($server->getDataPath() . "/worlds/$name/db/");
 
-        copy(Main::getInstance()->getDataFolder() . "mapList/" . $from. "/level.dat", $server->getDataPath() . "/worlds/$name/level.dat");
-        $oldWorldPath = Main::getInstance()->getDataFolder() . "/mapList/$from/level.dat";
+        copy(Main::getInstance()->getDataFolder() . "islandList/" . $from. "/level.dat", $server->getDataPath() . "/worlds/$name/level.dat");
+        $oldWorldPath = Main::getInstance()->getDataFolder() . "/islandList/$from/level.dat";
         $newWorldPath = $server->getDataPath() . "/worlds/$name/level.dat";
 
         $oldWorldNbt = new BedrockWorldData($oldWorldPath);
@@ -69,9 +70,8 @@ class IslandManager{
         $nbt = new LittleEndianNbtSerializer();
         $buffer = $nbt->write(new TreeRoot($worldData));
         file_put_contents(Path::join($newWorldPath), Binary::writeLInt(BedrockWorldData::CURRENT_STORAGE_VERSION) . Binary::writeLInt(strlen($buffer)) . $buffer);
-        self::copyDir(Main::getInstance()->getDataFolder() . "/mapList/" . $from . "/db", $server->getDataPath() . "/worlds/$name/db/");
+        self::copyDir(Main::getInstance()->getDataFolder() . "/islandList/" . $from . "/db", $server->getDataPath() . "/worlds/$name/db/");
 
-        return $name;
     }
 
     private static function copyDir($from, $to){
