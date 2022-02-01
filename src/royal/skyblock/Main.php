@@ -2,6 +2,7 @@
 
 namespace royal\skyblock;
 
+use CortexPE\Commando\PacketHooker;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
