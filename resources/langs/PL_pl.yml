@@ -1,0 +1,5 @@
+#opisy poleceń
+
+is_commands_description: "Polecenie Skyblock"
+help_commands_description: "Wyświetl stronę pomocy"
+setadminhome_commands_description: "ustaw dom, który mogą mieć tylko oficerowie"
