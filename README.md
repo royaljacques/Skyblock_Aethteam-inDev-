@@ -5,5 +5,6 @@ discord : https://discord.gg/hjbADqXRde
 | Command Name       | Command Description                       | Available for | commands status |  
 |--------------------|-------------------------------------------|---------------|-----------------|
 | `/is help`         | ssee all commands                         | everyone      | ❌               |
-| `/is create`       | create a island /is create `id_ island`   | everyone      | ❌               |
-| `/is setadminhome` | set home only for tp leader ans co-leader | everyone      | ❌               |✅ 
+| `/is create`       | create a island /is create `island Name ` | everyone      | ✅               |
+| `/is setadminhome` | set home only for tp leader ans co-leader | everyone      | ❌               |
+| `/is list `        | see all island list available             | everyone      | ❌               |✅ 
