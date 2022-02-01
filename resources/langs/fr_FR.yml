@@ -11,4 +11,6 @@ create_successfully_complete: "ton is c'est bien complétée , fais /is go pour 
 create_error_player_has_island: "Tu as déja une île!!!"
 create_error_island_not_exist: "L'île que tu as choisi n'est pas répertoriée "
 
+go_no_island: "Tu n'a pas encore d'ile pour te téléporter"
+
 help_reply_message: "§e   _______§/is Help§e_______\n  §r/is create: crée une île\n  /is del: surprimer votre île\n  /is members: voir les membres de votre île"

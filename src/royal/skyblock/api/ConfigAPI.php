@@ -60,6 +60,13 @@ class ConfigAPI
         $config = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
         return $config->get("hasIsland");
     }
+    public function getIsland (Player $player)
+    {
+        $config = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
+        return $config->get("islandName");
+    }
+
+
 
     public function setownerIsland (Player $player, string $islandName)
     {
