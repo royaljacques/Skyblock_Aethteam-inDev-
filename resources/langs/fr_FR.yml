@@ -8,5 +8,6 @@ create_commands_description: "crée son ile"
 
 #commands respounce
 create_successfull_complete: "ton is c'est bien complétée , fais /is go pour y accédée "
+create_error_player_has_island: "Tu as déja une île!!!"
 
 help_reply_message: "§e   _______§/is Help§e_______\n  §r/is create: crée une île\n  /is del: surprimer votre île\n  /is members: voir les membres de votre île"

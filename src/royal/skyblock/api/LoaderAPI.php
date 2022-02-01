@@ -15,14 +15,19 @@ class LoaderAPI
 
     public function init ()
     {
+
+        $this->plugin->saveResource('config.yml', true);
         $this->registerConfigs();
+
     }
 
     private function registerConfigs ()
     {
-        $this->plugin->saveResource('config.yml');
         @mkdir($this->plugin->getDataFolder() . "langs/");
         $this->plugin->saveResource("langs/fr_FR.yml");
         @mkdir($this->plugin->getDataFolder()."players/");
+        @mkdir($this->plugin->getDataFolder()."islandList/");
+        @mkdir($this->plugin->getDataFolder()."isConfig/");
     }
+
 }

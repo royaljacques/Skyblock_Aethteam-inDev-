@@ -32,7 +32,6 @@ class LangageAPI
         while ($dirs = readdir($dir)) {
             if ($dirs != "." && $dirs != "..") {
                 if (!is_dir($dirs)) {
-
                     $config = new Config($this->plugin->getDataFolder() . "langs/" . $dirs);
                     foreach ($config->getAll() as $key => $value) {
                         $this->translate[explode(".", $dirs)[0]][$key] = $value;
@@ -76,19 +75,32 @@ class LangageAPI
      * @return string renvoie la langue du joueur
      *
      */
-    public function getPlayerLangage (Player $player): string
+    private function getPlayerLangage (Player $player): string
     {
         $config = new Config($this->plugin->getDataFolder() . "players/" . $player->getName() . ".yml");
         return $config->get('lang');
     }
 
     /**
-     * @param string $playerlangage use getPlayerLangage
+     * @param Player $player
      * @param string $langs
-     * @return array
+     * @return string
      */
-    public function getTranslate (string $playerlangage, string $langs): array
+    public function getTranslate (Player $player, string $langs): string
     {
-        return $this->translate[$playerlangage][$langs];
+        return $this->translate[$this->getPlayerLangage($player)][$langs];
+    }
+
+    /**
+     * @param string $langs
+     * @return string
+     */
+    public function getDafultTranslate (string $langs):string    {
+        return $this->translate[$this->getPrincipalLangage()][$langs];
+    }
+
+    public function getPrincipalLangage(){
+        $config = new Config($this->plugin->getDataFolder() . "config.yml");
+        return $config->get("serverlang");
     }
 }

@@ -1,2 +1,12 @@
 #write or choice your name file of your langs
 serverlang: fr_FR
+#write your nameIs
+is:
+  1:
+    name: "Island1"
+    #name your folder id in /islandList/
+    folderName: "void"
+  2:
+    name: "Island2"
+    #name your folder id in /islandList/
+    folderName: "void1"

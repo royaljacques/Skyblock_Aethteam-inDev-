@@ -3,6 +3,7 @@ namespace royal\skyblock\events;
 
 use FormAPI\elements\Button;
 use FormAPI\window\SimpleWindowForm;
+use JsonException;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\player\Player;
@@ -29,14 +30,19 @@ class PlayerJoin implements Listener
     public function onJoin (PlayerJoinEvent $event)
     {
         $player = $event->getPlayer();
-        if (!$player->hasPlayedBefore()) {
+        if (!file_exists($this->plugin->getDataFolder()."players/".$player->getName().".yml")){
             $this->newPlayer($player);
         }
     }
 
     public function newPlayer (Player $player)
     {
-        $this->plugin->langageAPI->selectLangage($player);
+        $this->getPlugin()->langageAPI->selectLangage($player);
+        try {
+            $this->getPlugin()->configAPI->registerNewPlayer($player);
+        }catch (JsonException $jsonException){
+            $this->getPlugin()->getServer()->getLogger()->alert($jsonException->getMessage());
+        }
     }
 
 
