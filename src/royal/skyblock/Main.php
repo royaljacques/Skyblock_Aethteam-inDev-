@@ -67,6 +67,7 @@ class Main extends PluginBase implements Listener
 
     protected function onEnable (): void
     {
+
         if (!PacketHooker::isRegistered()) {
             try {
                 PacketHooker::register($this);

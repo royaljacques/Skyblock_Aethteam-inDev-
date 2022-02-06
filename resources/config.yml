@@ -10,3 +10,10 @@ is:
     name: "Island2"
     #name your folder id in /islandList/
     folderName: "void1"
+
+#écrire les niveau des iles , et combien il peuvent avoir comme bonus
+islandLevelConfig:
+  0:
+    home_max: 1
+    bank_max:
+  1:

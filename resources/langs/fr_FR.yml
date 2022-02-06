@@ -4,12 +4,25 @@ is_commands_descrition: "Commande skyblock"
 help_commands_descrition: "Voir la page d'aide"
 set_leader_home_commands_description: "mettre un home ou seul les leader peuvent se tp"
 create_commands_description: "crée son ile"
+go_commands_description: "allé son ile"
+sethome_commands_description: "metre un home sur son ile"
 
 
 #commands respounce
 create_successfully_complete: "ton is c'est bien complétée , fais /is go pour y accédée "
 create_error_player_has_island: "Tu as déja une île!!!"
 create_error_island_not_exist: "L'île que tu as choisi n'est pas répertoriée "
+
+#sethome commands
+sethome_no_permission: "tu n'as pas la permission de placer un home ici désoler "
+sethome_max_home_reached: "Tu as atteins la limite de home que ton ile pouvais recevoir"
+sethome_succes: "tu es biens placé ton nouveau sethome"
+
+
+home_no_existed_home: "il n'y as pas de home enrgistrer sur l'ile "
+home_tp_success: "tu viens de te tp au home de ton ile "
+
+
 
 go_no_island: "Tu n'a pas encore d'ile pour te téléporter"
 
