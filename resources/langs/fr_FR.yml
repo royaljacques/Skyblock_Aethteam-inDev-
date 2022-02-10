@@ -6,6 +6,7 @@ set_leader_home_commands_description: "mettre un home ou seul les leader peuvent
 create_commands_description: "crée son ile"
 go_commands_description: "allé son ile"
 sethome_commands_description: "metre un home sur son ile"
+  home_commands_description: "se téléporter"
 
 
 #commands respounce
