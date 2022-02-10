@@ -58,8 +58,9 @@ class Main extends PluginBase implements Listener
 
     protected function onLoad (): void
     {
-        self::$instance = $this;
+
         $this->loaderAPI = new LoaderAPI($this);
+        self::$instance = $this;
         $this->configAPI = new ConfigAPI($this);
         $this->langageAPI = new LangageAPI($this);
         $this->islandManager = new IslandManager($this);

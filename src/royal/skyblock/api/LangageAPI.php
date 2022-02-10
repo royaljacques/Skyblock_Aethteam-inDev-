@@ -2,8 +2,7 @@
 
 namespace royal\skyblock\api;
 
-use FormAPI\elements\Button;
-use FormAPI\window\SimpleWindowForm;
+use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
 use raklib\protocol\NACK;
@@ -59,14 +58,16 @@ class LangageAPI
 
     public function selectLangage (Player $player)
     {
-        $form = new SimpleWindowForm("skyblock_form", "skyblock_lang", "Choice your langage", function (Player $player, Button $selected) {
+        $form = new SimpleForm(function (Player $player, $selected = null) {
+            if ($selected === null){
+                $this->selectLangage($player);
+            }
             $config = new Config($this->plugin->getDataFolder() . "players/" . $player->getName() . ".yml");
-
-            $config->set("lang", $selected->getText());
+            $config->set("lang", $selected);
             $config->save();
         });
         foreach ($this->translate as $key => $value) {
-            $form->addButton($key, $key);
+            $form->addButton($key, 0, "", $key);
         }
         $player->sendForm($form);
     }

@@ -12,6 +12,7 @@ class ConfigAPI
 {
     private Main $plugin;
     private Config $config;
+    private array $isLevelConfig = [];
 
     public function __construct(Main $plugin)
     {
@@ -41,6 +42,9 @@ class ConfigAPI
         foreach ($config['is'] as $is => $value) {
             $this->plugin->getServer()->getLogger()->info("§2island => " . $value['name'] . " <= has been registed");
             $this->plugin->islandList[$value['name']] = $value['folderName'];
+        }
+        foreach ($config['islandLevelConfig'] as $level => $stats){
+            $this->isLevelConfig[$level] = $stats;
         }
     }
 
@@ -115,7 +119,7 @@ class ConfigAPI
                 $islandName = $this->getIsland($player);
                 $config = $this->getIslandCOnfig($islandName);
                 $homes = $config->get("homes");
-                if (count($homes) < $this->getConfig()->get("islandLevelConfig")[$this->getIslandCOnfig($islandName)->get("IsLevel")]["home_max"]) {
+                if (count($homes) <= $this->getConfig()->get("islandLevelConfig")[$this->getIslandCOnfig($islandName)->get("IsLevel")]["home_max"]) {
                     $x = $player->getPosition()->getX();
                     $y= $player->getPosition()->getY();
                     $z = $player->getPosition()->getZ();
