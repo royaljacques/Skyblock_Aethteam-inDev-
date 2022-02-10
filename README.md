@@ -6,6 +6,8 @@ discord : https://discord.gg/hjbADqXRde
 |--------------------|-------------------------------------------|---------------|-----------------|
 | `/is help`         | ssee all commands                         | everyone      | ❌               |
 | `/is create`       | create a island /is create `island Name ` | everyone      | ✅               |
-| `/is setadminhome` | set home only for tp leader ans co-leader | everyone      | ❌               |
+| `/is setadminhome` | set home only for tp leader ans co-leader | leader        | ❌               |
 | `/is list `        | see all island list available             | everyone      | ❌               |✅ 
 | `/is go `          | teleport in your island                   | everyone      | ✅               |✅ 
+| `/is sethome `     | simple sethome command                    | everyone      | ✅               |✅ 
+| `/is home `        | simple home command                       | everyone      | ✅               |✅ 

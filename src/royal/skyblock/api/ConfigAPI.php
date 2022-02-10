@@ -4,6 +4,7 @@ namespace royal\skyblock\api;
 
 use JsonException;
 use pocketmine\player\Player;
+use pocketmine\Server;
 use pocketmine\utils\Config;
 use pocketmine\world\Position;
 use royal\skyblock\Main;
@@ -43,7 +44,7 @@ class ConfigAPI
             $this->plugin->getServer()->getLogger()->info("§2island => " . $value['name'] . " <= has been registed");
             $this->plugin->islandList[$value['name']] = $value['folderName'];
         }
-        foreach ($config['islandLevelConfig'] as $level => $stats){
+        foreach ($config['islandLevelConfig'] as $level => $stats) {
             $this->isLevelConfig[$level] = $stats;
         }
     }
@@ -121,11 +122,11 @@ class ConfigAPI
                 $homes = $config->get("homes");
                 if (count($homes) <= $this->getConfig()->get("islandLevelConfig")[$this->getIslandCOnfig($islandName)->get("IsLevel")]["home_max"]) {
                     $x = $player->getPosition()->getX();
-                    $y= $player->getPosition()->getY();
+                    $y = $player->getPosition()->getY();
                     $z = $player->getPosition()->getZ();
                     $world_name = $player->getPosition()->getWorld()->getDisplayName();
-                    $position = $x.":".$y.":".$z;
-                    $config->set("homes", array_merge($homes, [$homename => ["position"=>$position, "world"=>$world_name]]));
+                    $position = $x . ":" . $y . ":" . $z;
+                    $config->set("homes", array_merge($homes, [$homename => ["position" => $position, "world" => $world_name]]));
                     $config->save();
                     $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "sethome_succes"));
                 } else {
@@ -136,25 +137,29 @@ class ConfigAPI
             }
         }
     }
-    public function Home(Player $player, $homeName){
-        $playerconfig = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
+
+    public function Home(Player $player, $homeName)
+    {
         $islandName = $this->getIsland($player);
         $config = $this->getIslandCOnfig($islandName);
         $homes = $config->get("homes");
-        if (count($homes) === 0){
+        if (count($homes) === 0) {
             $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "home_no_existed_home"));
-        }else{
-            foreach ($homes as $home){
-                if ($home === $homeName){
-                    $this->teleportToHome($player, $home);
+        } else {
+            foreach ($homes as $home => $homess) {
+                if ($home === $homeName) {
+                    $this->teleportToHome($player, $homess);
+                    return;
                 }
             }
         }
     }
-    private function teleportToHome(Player $player, array $home){
+
+    private function teleportToHome(Player $player, array $home)
+    {
         $position = explode(":", $home['position']);
         $levelName = $home['world'];
-        $player->teleport(new Position($position[0], $position[1], $position[2], $levelName));
+        $player->teleport(new Position(intval($position[0]), intval($position[1]), intval($position[2]), Server::getInstance()->getWorldManager()->getWorldByName($levelName)));
         $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "home_tp_success"));
     }
 }
