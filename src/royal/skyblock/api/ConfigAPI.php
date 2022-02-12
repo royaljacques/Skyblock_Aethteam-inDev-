@@ -30,6 +30,14 @@ class ConfigAPI
     }
 
     /**
+     * @return array
+     */
+    public function getIsLevelConfig(): array
+    {
+        return $this->isLevelConfig;
+    }
+
+    /**
      * @return Config
      */
     public function getConfig(): Config
@@ -73,7 +81,6 @@ class ConfigAPI
         $config = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
         return $config->get("islandName");
     }
-
 
     public function setownerIsland(Player $player, string $islandName)
     {
@@ -162,4 +169,37 @@ class ConfigAPI
         $player->teleport(new Position(intval($position[0]), intval($position[1]), intval($position[2]), Server::getInstance()->getWorldManager()->getWorldByName($levelName)));
         $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "home_tp_success"));
     }
+
+    /**
+     * @throws JsonException
+     */
+    public function deleteHome(Player $player, $homeName){
+        $NameIs = $this->getIsland($player);
+        $config = $this->getIslandCOnfig($NameIs);
+        $homes = $config->get("homes");
+        if (count($homes) === 0) {
+            $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "home_no_existed_home"));
+        } else {
+            foreach ($homes as $home => $homess) {
+                if ($home === $homeName) {
+                    unset($homes[$homeName]);
+                    var_dump($homes);
+                    $config->set('homes', $homes);
+                    $config->save();
+                    $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "delhome_successful_delete"));
+                }
+            }
+
+        }
+    }
+
+    public function deleteIsland(Player $player){
+        $playerconfig = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
+        if ($playerconfig->get("rank") === strtolower("leader")) {
+            $islandName = $this->getIsland($player);
+            $this->getPlugin()->getIslandManager()->MooveIsland($islandName);
+            $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "delete_succes"));
+        }
+    }
+
 }

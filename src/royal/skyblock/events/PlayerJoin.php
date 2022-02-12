@@ -5,6 +5,7 @@ use FormAPI\elements\Button;
 use FormAPI\window\SimpleWindowForm;
 use JsonException;
 use pocketmine\event\Listener;
+use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
@@ -44,6 +45,5 @@ class PlayerJoin implements Listener
             $this->getPlugin()->getServer()->getLogger()->alert($jsonException->getMessage());
         }
     }
-
 
 }

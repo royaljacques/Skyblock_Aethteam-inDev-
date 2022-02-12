@@ -88,4 +88,42 @@ class IslandManager{
             }
         }
     }
+    private static function createBackup(string $from, string $name ): void
+    {
+        $server = Server::getInstance();
+        @mkdir(Main::getInstance()->getDataFolder() . "worldsBackup/");
+        @mkdir(Main::getInstance()->getDataFolder() . "worldsBackup/$name/");
+        @mkdir(Main::getInstance()->getDataFolder() . "worldsBackup/$name/db/");
+
+        copy($server->getDataPath() . "/worlds/" . $from. "/level.dat", Main::getInstance()->getDataFolder(). "worldsBackup/$name/level.dat");
+        $oldWorldPath = $server->getDataPath() . "worlds/$from/level.dat";
+        $newWorldPath = Main::getInstance()->getDataFolder() . "/worldsBackup/$name/level.dat";
+        $oldWorldNbt = new BedrockWorldData($oldWorldPath);
+        $newWorldNbt = new BedrockWorldData($newWorldPath);
+        $worldData = $oldWorldNbt->getCompoundTag();
+        $newWorldNbt->getCompoundTag()->setString("LevelName", $name);
+
+        $nbt = new LittleEndianNbtSerializer();
+        $buffer = $nbt->write(new TreeRoot($worldData));
+        file_put_contents(Path::join($newWorldPath), Binary::writeLInt(BedrockWorldData::CURRENT_STORAGE_VERSION) . Binary::writeLInt(strlen($buffer)) . $buffer);
+        self::copyDir($server->getDataPath() . "/worlds/" . $from . "/db", Main::getInstance()->getDataFolder() . "worldsBackup/$name/db/");
+
+    }
+
+    private function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") rmdir($dir."/".$object); else unlink($dir."/".$object);
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
+    }
+    public function MooveIsland(string $islandName){
+        self::createBackup($islandName, "$islandName");
+        $this->rrmdir(Server::getInstance()->getDataPath() . "worlds/".$islandName);
+    }
 }
