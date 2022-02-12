@@ -9,6 +9,7 @@ use royal\skyblock\commands\subCommands\DelHome;
 use royal\skyblock\commands\subCommands\Go;
 use royal\skyblock\commands\subCommands\Home;
 use royal\skyblock\commands\subCommands\SetHome;
+use royal\skyblock\commands\subCommands\Help;
 use royal\skyblock\Main;
 
 class IslandCommand extends BaseCommand{
@@ -19,8 +20,11 @@ class IslandCommand extends BaseCommand{
         $this->registerSubCommand(new Go("go", Main::getInstance()->getLangageAPI()->getDafultTranslate("go_commands_description")));
         $this->registerSubCommand(new SetHome("sethome", Main::getInstance()->getLangageAPI()->getDafultTranslate("sethome_commands_description")));
         $this->registerSubCommand(new Home("home", Main::getInstance()->getLangageAPI()->getDafultTranslate("home_commands_description")));
+
         $this->registerSubCommand(new DelHome("delhome", Main::getInstance()->getLangageAPI()->getDafultTranslate("delhome_commands_description")));
         $this->registerSubCommand(new Delete("delete", Main::getInstance()->getLangageAPI()->getDafultTranslate("delete_commands_description")));
+        $this->registerSubCommand(new Help("help", Main::getInstance()->getLangageAPI()->getDafultTranslate("help_commands_descrition")));
+
     }
 
     public function onRun (CommandSender $sender, string $aliasUsed, array $args): void
