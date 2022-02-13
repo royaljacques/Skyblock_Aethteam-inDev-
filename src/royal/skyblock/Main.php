@@ -4,7 +4,6 @@ namespace royal\skyblock;
 
 use CortexPE\Commando\exception\HookAlreadyRegistered;
 use CortexPE\Commando\PacketHooker;
-use JsonException;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
@@ -58,7 +57,6 @@ class Main extends PluginBase implements Listener
 
     protected function onLoad (): void
     {
-
         $this->loaderAPI = new LoaderAPI($this);
         self::$instance = $this;
         $this->configAPI = new ConfigAPI($this);
@@ -73,18 +71,15 @@ class Main extends PluginBase implements Listener
             try {
                 PacketHooker::register($this);
             } catch (HookAlreadyRegistered $e) {
-                echo $e->getMessage();
+                $this->getLogger()->alert($e->getMessage());
             }
         }
         $this->loaderAPI->init();
         $config = new Config($this->getDataFolder() . "config.yml");
         $this->langageAPI->init();
         $this->configAPI->registerIslandsList();
-
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerJoin($this), $this);
         $this->getServer()->getCommandMap()->register("skyblock", new IslandCommand($this, "island"));
     }
-
-
 }
