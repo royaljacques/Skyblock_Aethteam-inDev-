@@ -1,7 +1,6 @@
 <?php
 namespace royal\skyblock\api;
 
-
 use pocketmine\player\Player;
 use royal\skyblock\Main;
 use Vecnavium\FormsUI\SimpleForm;

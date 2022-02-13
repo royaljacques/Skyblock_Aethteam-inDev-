@@ -66,7 +66,7 @@ class ConfigAPI
         try {
             $config->save();
         } catch (JsonException $jsonException) {
-            echo $jsonException->getMessage();
+            $this->plugin->getLogger()->alert($jsonException->getMessage());
         }
     }
 

@@ -2,11 +2,11 @@
 
 namespace royal\skyblock\api;
 
-use jojoe77777\FormAPI\SimpleForm;
 use pocketmine\player\Player;
 use pocketmine\utils\Config;
 use raklib\protocol\NACK;
 use royal\skyblock\Main;
+use Vecnavium\FormsUI\SimpleForm;
 
 class LangageAPI
 {
