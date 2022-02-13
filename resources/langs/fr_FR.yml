@@ -1,3 +1,5 @@
+skyblock_title_form: "AethTeam_Skyblock"
+skyblock_content_form: "Panel de votre île"
 #commands descriptions
 
 is_commands_descrition: "Commande skyblock"
@@ -9,7 +11,6 @@ sethome_commands_description: "metre un home sur son ile"
 home_commands_description: "se téléporter"
 delhome_commands_description: "suprimer un home"
 delete_commands_description: "surprimer votre ile "
-
 
 #commands respounce
 create_successfully_complete: "ton is c'est bien complétée , fais /is go pour y accédée "
@@ -24,13 +25,14 @@ sethome_succes: "tu es biens placé ton nouveau sethome"
 #delete commands
 delete_succes: "tu es biens surprimé ton île "
 
-
+#home commands
 home_no_existed_home: "il n'y as pas de home enrgistrer sur l'ile "
 home_tp_success: "tu viens de te tp au home de ton ile "
 
+#divers
 delhome_successful_delete: "Ton home as été suprimé avec succès "
 
-
+list_reply_message: "Voici la liste des îles du serveur :"
 
 go_no_island: "Tu n'a pas encore d'ile pour te téléporter"
 

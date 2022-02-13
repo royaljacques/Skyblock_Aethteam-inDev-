@@ -39,11 +39,7 @@ class PlayerJoin implements Listener
     public function newPlayer (Player $player)
     {
         $this->getPlugin()->langageAPI->selectLangage($player);
-        try {
-            $this->getPlugin()->configAPI->registerNewPlayer($player);
-        }catch (JsonException $jsonException){
-            $this->getPlugin()->getServer()->getLogger()->alert($jsonException->getMessage());
-        }
+        $this->getPlugin()->configAPI->registerNewPlayer($player);
     }
 
 }

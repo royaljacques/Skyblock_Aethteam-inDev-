@@ -8,6 +8,7 @@ use royal\skyblock\commands\subCommands\Delete;
 use royal\skyblock\commands\subCommands\DelHome;
 use royal\skyblock\commands\subCommands\Go;
 use royal\skyblock\commands\subCommands\Home;
+use royal\skyblock\commands\subCommands\ListCommands;
 use royal\skyblock\commands\subCommands\SetHome;
 use royal\skyblock\commands\subCommands\Help;
 use royal\skyblock\Main;
@@ -24,6 +25,7 @@ class IslandCommand extends BaseCommand{
         $this->registerSubCommand(new DelHome("delhome", Main::getInstance()->getLangageAPI()->getDafultTranslate("delhome_commands_description")));
         $this->registerSubCommand(new Delete("delete", Main::getInstance()->getLangageAPI()->getDafultTranslate("delete_commands_description")));
         $this->registerSubCommand(new Help("help", Main::getInstance()->getLangageAPI()->getDafultTranslate("help_commands_descrition")));
+        $this->registerSubCommand(new ListCommands("list", Main::getInstance()->getLangageAPI()->getDafultTranslate("help_commands_descrition")));
 
     }
 
