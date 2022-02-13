@@ -8,6 +8,9 @@ projects:
       - src: Paroxity/Commando/Commando
         version: ^3.0.0
         branch: PM-4.0
+      - src: jojoe77777/FormAPI/FormAPI
+        version: 2.1.0
+        branch: master
     lint:
       phpstan: false
 ...
