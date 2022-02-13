@@ -17,4 +17,9 @@ class Help extends BaseSubCommand{
             $sender->sendMessage(Main::getInstance()->getLangageAPI()->getTranslate($sender, "help_reply_message"));
         }
     }
+
+    protected function prepare(): void
+    {
+        // TODO: Implement prepare() method.
+    }
 }

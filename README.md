@@ -1,13 +1,21 @@
-### a simple Skyblock plugin currently in development.
-discord : https://discord.gg/hjbADqXRde
+<div style="text-align: center; justify-content: center; margin-right: auto; margin-left: auto; width: 100%;">
+<h3 style="color: blue"> A simple skyblock plugin, for pocketmine 4.0</h3>
+
+<img  src="img/AethTeam.png" alt="picture">
+
+[Join Discord Team, click here](https://discord.gg/hjbADqXRde)
 <br>
 
 | Command Name       | Command Description                       | Available for | commands status |  
 |--------------------|-------------------------------------------|---------------|-----------------|
-| `/is help`         | see all commands                         | everyone      | ✅               |
+| `/is help`         | see all commands                          | everyone      | ✅               |
 | `/is create`       | create a island /is create `island Name ` | everyone      | ✅               |
 | `/is setadminhome` | set home only for tp leader ans co-leader | leader        | ❌               |
-| `/is list `        | see all island list available             | everyone      | ❌               |✅ 
-| `/is go `          | teleport in your island                   | everyone      | ✅               |✅ 
-| `/is sethome `     | simple sethome command                    | everyone      | ✅               |✅ 
-| `/is home `        | simple home command                       | everyone      | ✅               |✅ 
+| `/is list `        | see all island list available             | everyone      | ❌               | 
+| `/is go `          | teleport in your island                   | everyone      | ✅               |
+| `/is sethome `     | simple sethome command                    | everyone      | ✅               |
+| `/is home `        | simple home command                       | everyone      | ✅               |
+
+</div>
+
+
