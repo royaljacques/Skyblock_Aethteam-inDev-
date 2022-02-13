@@ -102,6 +102,11 @@ class ConfigAPI
             "IsXp" => 0,
             "homes" => [
 
+            ],
+            "permissions" => [
+                "co-leader-invite" => false,
+                "co-leader-interact-chest" => false,
+                "co-leader-sethome-commands" => false,
             ]
         ));
         try {
@@ -123,9 +128,11 @@ class ConfigAPI
     {
         if ($this->getHasIsland($player) === true) {
             $playerconfig = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
-            if ($playerconfig->get("rank") === strtolower("leader")) {
-                $islandName = $this->getIsland($player);
-                $config = $this->getIslandCOnfig($islandName);
+            $islandName = $this->getIsland($player);
+            $config = $this->getIslandCOnfig($islandName);
+            if ($playerconfig->get("rank") === strtolower("leader") || ($playerconfig->get("rank") === strtolower("leader") && $config->getNested('permissions.co-leader-sethome-commands') === true)) {
+
+
                 $homes = $config->get("homes");
                 if (count($homes) <= $this->getConfig()->get("islandLevelConfig")[$this->getIslandCOnfig($islandName)->get("IsLevel")]["home_max"]) {
                     $x = $player->getPosition()->getX();
@@ -201,5 +208,13 @@ class ConfigAPI
             $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "delete_succes"));
         }
     }
+
+    public function getIslandList(Player $player){
+        $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "list_reply_message"));
+        foreach ($this->plugin->islandList as $islandName => $values){
+            $player->sendMessage($islandName);
+        }
+    }
+
 
 }

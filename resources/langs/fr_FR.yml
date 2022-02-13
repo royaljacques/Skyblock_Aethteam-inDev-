@@ -1,3 +1,5 @@
+skyblock_title_form: "AethTeam_Skyblock"
+skyblock_content_form: "Panel de votre île"
 #commands descriptions
 
 is_commands_descrition: "Commande skyblock"
@@ -30,8 +32,7 @@ home_tp_success: "tu viens de te tp au home de ton ile "
 
 delhome_successful_delete: "Ton home as été suprimé avec succès "
 
-
-
+list_reply_message: "Voici la liste de tes homes:"
 go_no_island: "Tu n'a pas encore d'ile pour te téléporter"
 
 help_reply_message: "§e   _______§/is Help§e_______\n  §r/is create: crée une île\n  /is del: surprimer votre île\n  /is members: voir les membres de votre île"
