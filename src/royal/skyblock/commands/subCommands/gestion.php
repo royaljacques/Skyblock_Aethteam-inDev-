@@ -2,6 +2,9 @@
 namespace royal\skyblock\commands\subCommands;
 use CortexPE\Commando\BaseSubCommand;
 use pocketmine\command\CommandSender;
+use pocketmine\player\Player;
+use royal\skyblock\api\GestionAPI;
+use royal\skyblock\Main;
 
 class gestion extends BaseSubCommand{
 
@@ -12,6 +15,7 @@ class gestion extends BaseSubCommand{
 
     public function onRun(CommandSender $sender, string $aliasUsed, array $args): void
     {
-        // TODO: Implement onRun() method.
+        $gestion = new GestionAPI(Main::getInstance());
+        if ($sender instanceof Player)$gestion->indexForm($sender);
     }
 }

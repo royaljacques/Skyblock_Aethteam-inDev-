@@ -107,6 +107,9 @@ class ConfigAPI
                 "co-leader-invite" => false,
                 "co-leader-interact-chest" => false,
                 "co-leader-sethome-commands" => false,
+            ],
+            "members" =>[
+
             ]
         ));
         try {
@@ -205,6 +208,11 @@ class ConfigAPI
         if ($playerconfig->get("rank") === strtolower("leader")) {
             $islandName = $this->getIsland($player);
             $this->getPlugin()->getIslandManager()->MooveIsland($islandName);
+            unlink($this->getPlugin()->getDataFolder()."isConfig/" . $this->getIsland($player) . '.yml');
+            $config = new Config($this->getPlugin()->getDataFolder() . "players/" . $player->getName() . ".yml");
+            $config->set("islandName", null);
+            $config->set("hasIsland", false);
+            $config->save();
             $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "delete_succes"));
         }
     }
@@ -216,5 +224,16 @@ class ConfigAPI
         }
     }
 
-
+    /**
+     * @throws JsonException
+     */
+    public function addPlayerIsland(Player $player){
+        $member = $this->getIslandCOnfig($player)->get("members");
+        $member[] = $player->getName();
+        $this->config->set("members", $member);
+        $this->config->save();
+    }
+    public function getMemberisland(Player $player){
+        return $this->config->get("members");
+    }
 }

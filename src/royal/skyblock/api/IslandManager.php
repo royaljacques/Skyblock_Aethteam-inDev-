@@ -33,6 +33,7 @@ class IslandManager{
             $compositCustomNameIs = "is_".$player->getName()."_".$this->GenerateRandomNumber();
             $this->getPlugin()->configAPI->setownerIsland($player, $compositCustomNameIs);
             $this->getPlugin()->configAPI->setIslandConfig($compositCustomNameIs);
+            $this->getPlugin()->configAPI->addPlayerIsland($player);
             self::copyWorld($Folder, $compositCustomNameIs);
             $player->sendMessage($this->getPlugin()->getLangageAPI()->getTranslate($player, "create_successfully_complete"));
         }else{
@@ -115,7 +116,12 @@ class IslandManager{
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
-                    if (filetype($dir."/".$object) == "dir") rmdir($dir."/".$object); else unlink($dir."/".$object);
+                    if (filetype($dir."/".$object) == "dir") {
+                        var_dump($object);
+                        $this->rrmdir($dir . "/" . $object);
+                    }else {
+                        unlink($dir . "/" . $object);
+                    }
                 }
             }
             reset($objects);

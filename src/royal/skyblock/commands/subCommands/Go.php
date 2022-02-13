@@ -26,7 +26,7 @@ class Go extends \CortexPE\Commando\BaseSubCommand
                 }
                 $targetSpawn = Main::getInstance()->getServer()->getWorldManager()->getWorldByName(Main::getInstance()->configAPI->getIsland($sender));
 
-                $sender->teleport($targetSpawn->getSafeSpawn());
+                $sender->teleport($targetSpawn->getSpawnLocation());
             }else{
                 $sender->sendMessage(Main::getInstance()->getLangageAPI()->getTranslate($sender, "go_no_island"));
             }

@@ -25,11 +25,24 @@ class GestionAPI{
         });
         $form->setTitle($this->plugin->getLangageAPI()->getTranslate($player, "skyblock_title_form"));
         $form->setContent($this->plugin->getLangageAPI()->getTranslate($player, "skyblock_content_form"));
-
+        $form->addButton($this->plugin->getLangageAPI()->getTranslate($player, "skyblock_button_form"));
+        $player->sendForm($form);
     }
-
     private function getMembersislands(Player $player){
-
+        $form = new SimpleForm(function (Player $player, int $mdata = null){
+            return true;
+        });
+        $memeberList = Main::getInstance()->configAPI->getMemberisland($player);
+        $connectionType = "§4not Online";
+        foreach ($memeberList as $memebers){
+            foreach ($this->plugin->getServer()->getOnlinePlayers() as $player){
+                if ($memebers === $player->getName()){
+                    $connectionType = "§2Online";
+                }
+                $form->addButton($memebers."\n".$connectionType, 0, "", $memebers);
+            }
+        }
+        $player->sendForm($form);
     }
     private function banMember(Player $player){
 

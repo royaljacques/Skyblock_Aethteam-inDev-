@@ -5,6 +5,8 @@
 
 [Join Discord Team, click here](https://discord.gg/hjbADqXRde)
 
+[donnate Paypal](https://paypal.me/AetheriumMCPE)
+
 <br>
 
 | Command Name       | Command Description                       | Available for | commands status |  

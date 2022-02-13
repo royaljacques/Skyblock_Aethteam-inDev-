@@ -26,7 +26,6 @@ class LangageAPI
 
     private function loadLangage ()
     {
-
         $dir = opendir($this->plugin->getDataFolder() . "langs");
         while ($dirs = readdir($dir)) {
             if ($dirs != "." && $dirs != "..") {

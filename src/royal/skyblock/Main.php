@@ -80,6 +80,6 @@ class Main extends PluginBase implements Listener
         $this->configAPI->registerIslandsList();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->getServer()->getPluginManager()->registerEvents(new PlayerJoin($this), $this);
-        $this->getServer()->getCommandMap()->register("skyblock", new IslandCommand($this, "island"));
+        $this->getServer()->getCommandMap()->register("skyblock", new IslandCommand($this, "island", "", ["is"]));
     }
 }
