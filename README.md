@@ -15,7 +15,7 @@
 | `/is list `        | see all island list available             | everyone      | ❌               | 
 | `/is go `          | teleport in your island                   | everyone      | ✅               |
 | `/is sethome `     | simple sethome command                    | everyone      | ✅               |
-| `/is home `        | simple home command                       | everyone      | ✅               |
+| `/is home `        | simple home command  `/is home`           | everyone      | ✅               |
 
 </div>
 
