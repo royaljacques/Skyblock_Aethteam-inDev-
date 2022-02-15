@@ -1,6 +1,8 @@
 skyblock_title_form: "AethTeam_Skyblock"
 skyblock_content_form: "Panel de votre île"
 skyblock_button_form: "Liste des Membres"
+
+skyblock_button_ban: "bannir "
 #commands descriptions
 
 is_commands_descrition: "Commande skyblock"
@@ -24,6 +26,7 @@ create_error_island_not_exist: "L'île que tu as choisi n'est pas répertoriée 
 sethome_no_permission: "tu n'as pas la permission de placer un home ici désoler "
 sethome_max_home_reached: "Tu as atteins la limite de home que ton ile pouvais recevoir"
 sethome_succes: "tu es biens placé ton nouveau sethome"
+  sethome_no_world_is_island: "Tu n'est pas dans ton ile"
 
 #delete commands
 delete_succes: "tu es biens surprimé ton île "

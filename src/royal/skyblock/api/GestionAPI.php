@@ -44,7 +44,18 @@ class GestionAPI{
         }
         $player->sendForm($form);
     }
-    private function banMember(Player $player){
+    private function selectOptions(Player $player, Player $target){
+        $form = new SimpleForm(function (Player $player, int $data = null ){
+
+        });
+        $form->addButton($this->plugin->getLangageAPI()->getTranslate($player, "skyblock_button_ban"));
+        $form->addButton($this->plugin->getLangageAPI()->getTranslate($player, "skyblock_button_promote"));
+        $player->sendForm($form);
+    }
+    private function banMember(Player $player, Player $target){
+
+    }
+    private function promoteMemeber(Player $player, Player $target){
 
     }
 

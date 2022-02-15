@@ -134,14 +134,16 @@ class ConfigAPI
             $islandName = $this->getIsland($player);
             $config = $this->getIslandCOnfig($islandName);
             if ($playerconfig->get("rank") === strtolower("leader") || ($playerconfig->get("rank") === strtolower("leader") && $config->getNested('permissions.co-leader-sethome-commands') === true)) {
-
-
+                $world_name = $player->getPosition()->getWorld()->getDisplayName();
+                if ($world_name !== $islandName){
+                    $player->sendMessage($this->plugin->getLangageAPI()->getTranslate($player, "sethome_no_world_is_island"));
+                    return;
+                }
                 $homes = $config->get("homes");
                 if (count($homes) <= $this->getConfig()->get("islandLevelConfig")[$this->getIslandCOnfig($islandName)->get("IsLevel")]["home_max"]) {
                     $x = $player->getPosition()->getX();
                     $y = $player->getPosition()->getY();
                     $z = $player->getPosition()->getZ();
-                    $world_name = $player->getPosition()->getWorld()->getDisplayName();
                     $position = $x . ":" . $y . ":" . $z;
                     $config->set("homes", array_merge($homes, [$homename => ["position" => $position, "world" => $world_name]]));
                     $config->save();
